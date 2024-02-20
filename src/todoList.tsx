@@ -1,4 +1,3 @@
-import * as elements from "typed-html";
 
 export interface todo {
   id: number,
@@ -11,10 +10,10 @@ export const todos: todo[] = [
   { id: 2, content: "Study for NOI", completed: false},
 ]
 
-export const TodoItem: elements.CustomElementHandler = ({ id, content, completed }: todo, _contents) => (
-  <div class="flex flex-row space-x-3 w-auto justify-end">
+export const TodoItem = ({ id, content, completed }: todo, _contents: string[]) => (
+  <div class="flex flex-row space-x-3 w-auto justify-end items-center">
     <p>{content}</p>
-    <input type="checkbox" checked={completed} />
+    <input type="checkbox" class="w-6 h-6" checked={completed} />
     <button type="button" class="text-red-500">X</button>
   </div>
 )

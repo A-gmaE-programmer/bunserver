@@ -1,8 +1,7 @@
 console.log("Starting server");
 import { Elysia } from "elysia";
 import { html } from "@elysiajs/html";
-import * as elements from "typed-html";
-import { Index, TodoList } from "./templates.tsx";
+import { Index, TodoList } from "./templates.tsx"
 
 const app = new Elysia()
   .use(html())
@@ -33,7 +32,7 @@ async function doCommandLine() {
   }
 }
 
-const PackIndex: elements.CustomElementHandler = (_attributes, contents) => `
+const PackIndex = (attributes, contents: string[]) => `
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,3 +46,16 @@ const PackIndex: elements.CustomElementHandler = (_attributes, contents) => `
 
 ${contents}
 `;
+
+export const baseHtml = (props: Html.PropsWithChildren) =>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Crazy web stacks </title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"/>
+    <script src="https://cdn.tailwindcss.com"/>
+  </head>
+
+  {props.children}
+</html>
